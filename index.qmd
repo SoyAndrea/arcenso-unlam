@@ -1,0 +1,446 @@
+---
+title: "Procesando datos censales en R"
+subtitle: "Taller práctico para aprender a explorar y procesar indicadores demográficos con los paquetes `ARcenso` y `tidyverse`."
+author: "Andrea Gomez Vargas"
+institute: "Universidad Nacional de la Matanza"
+date: "09/30/2025"
+format:
+  revealjs: 
+    theme: argento.scss
+    self-contained: false
+    logo: images/hex.png
+    highlight-style: a11y
+    css: logo.css
+    footer: "[**ARcenso**](https://soyandrea.github.io/arcenso/)"
+knitr:
+  opts_chunk: 
+    echo: true
+    collapse: true
+    comment: "#>"
+    fig.path: "figures/"
+from: markdown+emoji
+---
+
+# Datos censales 
+
+## 
+
+> “El censo de población es la operación que consiste en recopilar, elaborar, evaluar, analizar y difundir, de manera simultánea, datos demográficos, económicos y sociales de todas las personas de un país o de una parte bien delimitada de un país, en un momento determinado.”[^1] 
+
+
+[^1]: Principios y recomendaciones para los censos de población y habitación
+
+
+## Características esenciales que debe cumplir un censo:
+
+- **Universalidad:** cubrir a toda la población y/o todas las viviendas.
+
+- **Simultaneidad:** referirse a la misma fecha de referencia.
+
+- **Periodicidad:** realizarse en intervalos regulares, generalmente cada 10 años.
+
+- **Individualidad:** registrar datos de cada persona y cada vivienda de manera separada.
+
+
+## Los censos de población del INDEC
+
+> [censo.gob.ar](https://censo.gob.ar/index.php/historia/)
+
+![](images/censos.png){width="80%"}
+
+
+## `Importancia de los datos censales`
+
+::: {.incremental}
+
+- Es una herramienta clave para entender las caracteristicas y necesidades de la población.
+
+- Proporcionan datos esenciales para la planificación y el desarrollo de las políticas públicas.
+
+- Planificación social y económica
+
+- Investigación académica y estudios sociales
+
+- Investigaciones de mercado y mucho más...
+:::
+
+## `R`
+
+::: {.incremental}
+
+- `R` es una herramienta orientada al trabajo estadístico y análisis de datos.
+
+- Es un software libre y de código abierto, lo que facilita la colaboración y reproducibilidad.
+
+- Existen otros paquetes de datos censales desarrollados en `R` (por ejemplo, `censobr` para Brasil), lo que crea un ecosistema que favorece la interoperabilidad y el aprendizaje compartido.
+
+::: 
+
+
+## Proceso de trabajo en ciencia de datos con `R`
+
+  ![](images/procesor.png){width=80%}
+
+## **`ARcenso`** {.smaller}
+
+
+Es una iniciativa ciudadana que nació de nuestra experiencia profesional con datos censales en el INDEC, motivada por la necesidad de contar con datos accesibles y ordenados, e inspirada en el espíritu colaborativo de la comunidad R. Con el apoyo del Programa de Campeonas de rOpenSci (2023–2024), el proyecto es liderado por Andrea Gómez Vargas, junto a Emanuel Ciardullo como co-desarrollador y Luis D. Verde como mentor.
+
+
+
+![](images/SVG Brandpack/icon_lettering_black.svg){width="30%"}
+
+
+## ¿Cuál es la `propuesta`?
+
+<br>
+
+**Generar un paquete que permita disponer de los datos oficiales de los censos nacionales de población en Argentina** provenientes del INDEC desde 1970 hasta 2022, homogeneizados, ordenados y listos para usar.
+
+## Objetivo
+
+> Disponibilidad: de excel a **tablas ordenadas** en R
+
+::::: columns
+::: {.column width="70%"}
+![cuadro de excel descargado](images/excel.png){width="110%"}
+:::
+
+::: {.column width="30%"}
+![tabla ordenada en R](images/tabla.png){width="100%"}
+:::
+:::::
+
+# ¿Por qué?
+
+
+## `Análisis históricos y memoria digital`
+
+<br>
+
+Actualmente los resultados históricos censales de **1970, 1980, 1991, 2001, 2010 y 2022** están disponibles en distintos formatos a través de libros físicos, PDFs, archivos en formato excel o en REDATAM, sin contar con un sistema o formato unificado que permita trabajar con los datos de estos seis periodos censales como base de datos.
+
+
+# Antes de las funciones: `Marco conceptual`
+
+
+## Principios `FAIR` {.smaller}
+
+**Localizable (`Findable`):**
+
+Datos censales centralizados que abarcan seis periodos censales nacionales (1970–2022)
+
+**Accesible (`Accessible`):**
+
+Conjuntos de datos censales públicos, homogenizados, disponibles en formatos abiertos y acompañados de documentación y metadatos completos.
+
+**Interoperable (`Interoperable`):**
+
+Tablas ordenadas (formato tidy) y bien estructuradas que permiten una integración sencilla con otros conjuntos de datos.
+
+**Reutilizable (`Reusable`):**
+
+Incluye descripciones detalladas de variables, codificación estandarizada, licencias abiertas y estructuras de datos reproducibles que facilitan su uso a largo plazo y la comparación entre estudios.
+
+
+## Estructura y temas de los datos censales según la `ONU` {.smaller}
+
+<br>
+
+::: {.columns}
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+
+`Temas del Censo`
+**Núcleo:** Variables esenciales
+(ej.: edad, sexo, población)
+
+**Núcleo derivado:** Variables calculadas
+(ej.: tasas de fecundidad)
+
+**Adicionales:** Temas específicos del país
+(ej.: religión)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+
+`Unidades Conceptuales`
+**Población:** Personas individuales
+
+**Vivienda:** Unidades habitacionales físicas
+
+**Hogar:** Personas que comparten una vivienda
+:::
+
+::: {.column width="30%"}
+
+`Cobertura Geográfica`
+
+**Nacional**: Total del país
+
+**Jurisdicciones**: (23 provincias de Argentina y la Ciudad Autónoma de Buenos Aires)
+:::
+
+:::
+
+
+# `{ARcenso}` :package:
+
+
+## ¿Cómo usarlo?
+
+<br>
+
+### Instalación
+
+```{r  eval=FALSE}
+# install.packages("remotes")
+remotes::install_github("SoyAndrea/arcenso")
+```
+
+<br> <br>
+
+### Activación del paquete
+
+```{r}
+library(arcenso)
+```
+
+# Principales funciones
+
+## `get_census()`
+
+
+> Obtener tablas por año o temática censal
+
+<br>
+
+```{r}
+get_census(year = 1970, 
+           topic = "CONDICIONES HABITACIONALES", 
+           geolvl = "Total del país")
+```
+
+
+
+## `check_repository()`
+
+> Chequeo de tablas dispónibles por año o temática censal
+
+<br>
+
+```{r}
+check_repository(year = 1970, 
+                 topic = "CONDICIONES HABITACIONALES", 
+                 geolvl = "Total del país")
+```
+
+
+
+## `arcenso()`
+
+> tablero de consulta
+
+```{r eval=FALSE}
+arcenso() # shinyapp consulta
+```
+
+![](images/shiny.png){width="120%" fig-align="center"}
+
+## Documentación
+
+
+```{r echo=FALSE}
+knitr::include_url("https://soyandrea.github.io/arcenso/",height = 600)
+```
+
+
+## Manos al código
+
+<br>
+
+![](https://i.pinimg.com/originals/9f/ff/73/9fff730a3d58f7973f6e2891ee468a2d.gif)
+
+## Instalación de paquetes de trabajo
+
+<br>
+
+### `ARcenso`
+
+```{r}
+#| echo: true
+#| eval: false
+install.packages("remotes")
+remotes::install_github("SoyAndrea/arcenso")
+```
+
+<br>
+
+### `tidyverse`
+
+```{r}
+#| echo: true
+#| eval: false
+#| 
+install.packages("tidyverse")
+install.packages("gt")
+```
+
+## Activación de paquetes con `library`
+
+<br>
+
+> esto realizo cada vez que use R 
+
+<br>
+<br>
+
+```{r}
+#| eval: true
+#| echo: true
+#| message: false
+#| warning: false
+
+library(arcenso)
+library(tidyverse)
+library(gt)
+```
+
+
+## Importo datos con la función `get_census()`
+
+```{r}
+estructura_pba_1970 <- get_census(year = 1970, 
+                              topic = "ESTRUCTURA DE POBLACION", 
+                              geolvl = "Provincia de Buenos Aires")
+
+estructura_pba_1970
+```
+
+
+
+
+## Reviso la estructura de mis datos
+
+```{r}
+str(estructura_pba_1970)
+```
+
+
+## Elijo la tabla a trabajar como DataFrame
+
+```{r}
+estructura_pba_1970 <- estructura_pba_1970[[1]]
+
+estructura_pba_1970
+```
+
+
+## Calculo indicador con `dplyr`
+
+> Estructura de población por grupos quinquenales de edad según sexo
+
+
+```{r}
+pba_1970 <- estructura_pba_1970 %>%
+  filter(sexo != "Total") %>%
+  mutate(
+    grupo_de_edad = case_when(
+      grupo_de_edad == "0-4" ~ "00-04",
+      grupo_de_edad == "5-9" ~ "05-09",
+      TRUE ~ grupo_de_edad),
+    poblacion = as.numeric(poblacion)) %>%
+  group_by(sexo) %>%
+  mutate(
+    poblacion_rel = if_else(sexo == "Varones", -poblacion / sum(poblacion), 
+                                                poblacion /sum(poblacion))) %>%
+  ungroup()
+```
+
+
+## Grafico el indicador con `ggplot2`
+
+```{r}
+g1 <- pba_1970 %>%
+  ggplot(aes(x = poblacion_rel, 
+             y = grupo_de_edad, 
+             fill = sexo)) +
+  geom_col() +
+  scale_fill_manual(values = c("#003049","#6a994e")) +
+  scale_x_continuous(
+    limits = c(-0.12, 0.12),
+    breaks = seq(-0.12, 0.12, by = 0.03),
+    labels = paste0(abs(seq(-12, 12, by = 3)), "%") ) +
+  labs(
+    title = "Gráfico 1. Estructura de población por sexo y grupo de edad.",
+    subtitle = "Provincia de Buenos Aires. Año 1970",
+    x = "porcentaje",
+    y = "grupo de edad",
+    fill = " ",
+    caption = "Fuente: INDEC, Censo Nacional de Población, Familias y Viviendas 1970." ) +
+  theme_bw() +
+  theme(legend.position = "bottom")
+```
+
+
+## Gráfico estático con `ggplot2`
+
+
+```{r fig.width= 9, fig.height= 5}
+g1 # observo el resultado
+```
+
+## Tabla de resultado en `gt`
+
+```{r}
+tabla1 <- estructura_pba_1970 %>% 
+  pivot_wider(names_from = "sexo", values_from = "poblacion") %>% 
+  filter(lugar_nacimiento == "Total") %>% 
+  select(-2) %>% 
+  mutate(Total = as.numeric(Total),
+         Mujeres = as.numeric(Mujeres),
+         Varones = as.numeric(Varones))
+
+
+tabla_pba <- tabla1 %>% 
+  gt() %>% 
+  tab_header(
+    title = "Tabla 1. Estructura de población por sexo y grupo de edad. Provincia de Buenos Aires. Año 1970" ) %>%
+  cols_label(
+    grupo_de_edad = "Grupo quinquenal de edad"
+  ) %>%
+  grand_summary_rows(
+    columns = c(Total, Varones, Mujeres),
+    fns = list("Total población" = ~sum(.))) %>%   
+    tab_options(
+     heading.align = "left",
+     heading.background.color = "#2B5597",
+     footnotes.background.color = "#cedcf1",
+     column_labels.font.weight = "bold"
+  ) %>% 
+  tab_source_note('Fuente: INDEC, Censo Nacional de Población, Familias y Viviendas 1970.') 
+
+```
+
+
+## Tabla final
+
+```{r}
+tabla_pba
+```
+
+
+## Resultado de trabajo
+
+![](images/procesandor2.png){width=80%}
+
+# Preguntas
+
+
+# Gracias :grin:

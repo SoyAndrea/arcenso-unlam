@@ -419,7 +419,7 @@ Andrea Gomez Vargas
 <blockquote>
 <p>“El censo de población es la operación que consiste en recopilar, elaborar, evaluar, analizar y difundir, de manera simultánea, datos demográficos, económicos y sociales de todas las personas de un país o de una parte bien delimitada de un país, en un momento determinado.”<sup>1</sup></p>
 </blockquote>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Principios y recomendaciones para los censos de población y habitación</p></li></ol></aside></section>
+<aside><ol class="aside-footnotes"><li id="fn1"><p><a href="https://unstats.un.org/unsd/publication/seriesm/seriesm_67rev2s.pdf">Principios y recomendaciones para los censos de población y habitación - ONU</a></p></li></ol></aside></section>
 <section id="características-esenciales-que-debe-cumplir-un-censo" class="slide level2">
 <h2>Características esenciales que debe cumplir un censo:</h2>
 <ul>
@@ -432,10 +432,10 @@ Andrea Gomez Vargas
 <section id="los-censos-de-población-del-indec" class="slide level2">
 <h2>Los censos de población del INDEC</h2>
 <blockquote>
-<p><a href="https://censo.gob.ar/index.php/historia/">censo.gob.ar</a></p>
+<p>Toda la data de los censos en Argentina está en <a href="https://censo.gob.ar/index.php/historia/">censo.gob.ar</a></p>
 </blockquote>
 
-<img data-src="images/censos.png" style="width:80.0%" class="r-stretch"></section>
+<img data-src="images/censos.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="importancia-de-los-datos-censales" class="slide level2">
 <h2><code>Importancia de los datos censales</code></h2>
 <div>
@@ -461,12 +461,12 @@ Andrea Gomez Vargas
 <section id="proceso-de-trabajo-en-ciencia-de-datos-con-r" class="slide level2">
 <h2>Proceso de trabajo en ciencia de datos con <code>R</code></h2>
 
-<img data-src="images/procesor.png" style="width:80.0%" class="r-stretch"></section>
+<img data-src="images/procesor.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
 <section id="arcenso" class="slide level2 smaller">
 <h2><strong><code>ARcenso</code></strong></h2>
 <p>Es una iniciativa ciudadana que nació de nuestra experiencia profesional con datos censales en el INDEC, motivada por la necesidad de contar con datos accesibles y ordenados, e inspirada en el espíritu colaborativo de la comunidad R. Con el apoyo del Programa de Campeonas de rOpenSci (2023–2024), el proyecto es liderado por Andrea Gómez Vargas, junto a Emanuel Ciardullo como co-desarrollador y Luis D. Verde como mentor.</p>
 
-<img data-src="images/SVG%20Brandpack/icon_lettering_black.svg" style="width:30.0%" class="r-stretch"></section>
+<img data-src="images/SVG%20Brandpack/icon_lettering_black.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:25.0%"></section>
 <section id="cuál-es-la-propuesta" class="slide level2">
 <h2>¿Cuál es la <code>propuesta</code>?</h2>
 <p><br></p>
@@ -685,7 +685,9 @@ Andrea Gomez Vargas
 </section>
 <section id="manos-al-código" class="slide level2">
 <h2>Manos al código</h2>
-<p><br></p>
+<blockquote>
+<p><a href="https://drive.google.com/drive/folders/1IgGfcNBAMZzf2p83MxH9YJtzyocBx0Pe?usp=sharing">Carpeta para descargar scripts de trabajo</a></p>
+</blockquote>
 
 <img data-src="https://i.pinimg.com/originals/9f/ff/73/9fff730a3d58f7973f6e2891ee468a2d.gif" class="r-stretch"></section>
 <section id="instalación-de-paquetes-de-trabajo" class="slide level2">
@@ -709,7 +711,7 @@ Andrea Gomez Vargas
 <blockquote>
 <p>esto realizo cada vez que use R</p>
 </blockquote>
-<p><br> <br></p>
+<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">library</span>(arcenso)</span>
 <span id="cb8-2"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
@@ -753,8 +755,8 @@ Andrea Gomez Vargas
 <span id="cb10-7"><a href=""></a><span class="co">#&gt;   ..$ poblacion       : chr [1:162] "833150" "827450" "5700" "791450" ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="elijo-la-tabla-a-trabajar-como-dataframe" class="slide level2">
-<h2>Elijo la tabla a trabajar como DataFrame</h2>
+<section id="paso-lista-de-datos-a-dataframe" class="slide level2">
+<h2>Paso lista de datos a DataFrame</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>estructura_pba_1970 <span class="ot">&lt;-</span> estructura_pba_1970[[<span class="dv">1</span>]]</span>
 <span id="cb11-2"><a href=""></a></span>
@@ -852,10 +854,11 @@ Andrea Gomez Vargas
 <span id="cb15-20"><a href=""></a>    <span class="fu">tab_options</span>(</span>
 <span id="cb15-21"><a href=""></a>     <span class="at">heading.align =</span> <span class="st">"left"</span>,</span>
 <span id="cb15-22"><a href=""></a>     <span class="at">heading.background.color =</span> <span class="st">"#2B5597"</span>,</span>
-<span id="cb15-23"><a href=""></a>     <span class="at">footnotes.background.color =</span> <span class="st">"#cedcf1"</span>,</span>
+<span id="cb15-23"><a href=""></a>     <span class="at">footnotes.background.color =</span> <span class="st">"#2B5597"</span>,</span>
 <span id="cb15-24"><a href=""></a>     <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span></span>
 <span id="cb15-25"><a href=""></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-26"><a href=""></a>  <span class="fu">tab_source_note</span>(<span class="st">'Fuente: INDEC, Censo Nacional de Población, Familias y Viviendas 1970.'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-26"><a href=""></a>  <span class="fu">tab_source_note</span>(<span class="st">'Fuente: INDEC, Censo Nacional de Población, Familias y Viviendas 1970.'</span>) </span>
+<span id="cb15-27"><a href=""></a>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tabla-final" class="slide level2">
@@ -863,23 +866,23 @@ Andrea Gomez Vargas
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>tabla_pba</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="mwqzsyaldi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mwqzsyaldi table {
+<div id="huzodsscdl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#huzodsscdl table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mwqzsyaldi thead, #mwqzsyaldi tbody, #mwqzsyaldi tfoot, #mwqzsyaldi tr, #mwqzsyaldi td, #mwqzsyaldi th {
+#huzodsscdl thead, #huzodsscdl tbody, #huzodsscdl tfoot, #huzodsscdl tr, #huzodsscdl td, #huzodsscdl th {
   border-style: none;
 }
 
-#mwqzsyaldi p {
+#huzodsscdl p {
   margin: 0;
   padding: 0;
 }
 
-#mwqzsyaldi .gt_table {
+#huzodsscdl .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -905,12 +908,12 @@ Andrea Gomez Vargas
   border-left-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_caption {
+#huzodsscdl .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mwqzsyaldi .gt_title {
+#huzodsscdl .gt_title {
   color: #FFFFFF;
   font-size: 125%;
   font-weight: initial;
@@ -922,7 +925,7 @@ Andrea Gomez Vargas
   border-bottom-width: 0;
 }
 
-#mwqzsyaldi .gt_subtitle {
+#huzodsscdl .gt_subtitle {
   color: #FFFFFF;
   font-size: 85%;
   font-weight: initial;
@@ -934,7 +937,7 @@ Andrea Gomez Vargas
   border-top-width: 0;
 }
 
-#mwqzsyaldi .gt_heading {
+#huzodsscdl .gt_heading {
   background-color: #2B5597;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -946,13 +949,13 @@ Andrea Gomez Vargas
   border-right-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_bottom_border {
+#huzodsscdl .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_col_headings {
+#huzodsscdl .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -967,7 +970,7 @@ Andrea Gomez Vargas
   border-right-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_col_heading {
+#huzodsscdl .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -987,7 +990,7 @@ Andrea Gomez Vargas
   overflow-x: hidden;
 }
 
-#mwqzsyaldi .gt_column_spanner_outer {
+#huzodsscdl .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -999,15 +1002,15 @@ Andrea Gomez Vargas
   padding-right: 4px;
 }
 
-#mwqzsyaldi .gt_column_spanner_outer:first-child {
+#huzodsscdl .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mwqzsyaldi .gt_column_spanner_outer:last-child {
+#huzodsscdl .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mwqzsyaldi .gt_column_spanner {
+#huzodsscdl .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1019,11 +1022,11 @@ Andrea Gomez Vargas
   width: 100%;
 }
 
-#mwqzsyaldi .gt_spanner_row {
+#huzodsscdl .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mwqzsyaldi .gt_group_heading {
+#huzodsscdl .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1049,7 +1052,7 @@ Andrea Gomez Vargas
   text-align: left;
 }
 
-#mwqzsyaldi .gt_empty_group_heading {
+#huzodsscdl .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1064,15 +1067,15 @@ Andrea Gomez Vargas
   vertical-align: middle;
 }
 
-#mwqzsyaldi .gt_from_md > :first-child {
+#huzodsscdl .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mwqzsyaldi .gt_from_md > :last-child {
+#huzodsscdl .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mwqzsyaldi .gt_row {
+#huzodsscdl .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1091,7 +1094,7 @@ Andrea Gomez Vargas
   overflow-x: hidden;
 }
 
-#mwqzsyaldi .gt_stub {
+#huzodsscdl .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1104,7 +1107,7 @@ Andrea Gomez Vargas
   padding-right: 5px;
 }
 
-#mwqzsyaldi .gt_stub_row_group {
+#huzodsscdl .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1118,15 +1121,15 @@ Andrea Gomez Vargas
   vertical-align: top;
 }
 
-#mwqzsyaldi .gt_row_group_first td {
+#huzodsscdl .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mwqzsyaldi .gt_row_group_first th {
+#huzodsscdl .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mwqzsyaldi .gt_summary_row {
+#huzodsscdl .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1136,16 +1139,16 @@ Andrea Gomez Vargas
   padding-right: 5px;
 }
 
-#mwqzsyaldi .gt_first_summary_row {
+#huzodsscdl .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_first_summary_row.thick {
+#huzodsscdl .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mwqzsyaldi .gt_last_summary_row {
+#huzodsscdl .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1155,7 +1158,7 @@ Andrea Gomez Vargas
   border-bottom-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_grand_summary_row {
+#huzodsscdl .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1165,7 +1168,7 @@ Andrea Gomez Vargas
   padding-right: 5px;
 }
 
-#mwqzsyaldi .gt_first_grand_summary_row {
+#huzodsscdl .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1175,7 +1178,7 @@ Andrea Gomez Vargas
   border-top-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_last_grand_summary_row_top {
+#huzodsscdl .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1185,11 +1188,11 @@ Andrea Gomez Vargas
   border-bottom-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_striped {
+#huzodsscdl .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mwqzsyaldi .gt_table_body {
+#huzodsscdl .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1198,9 +1201,9 @@ Andrea Gomez Vargas
   border-bottom-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_footnotes {
-  color: #333333;
-  background-color: #CEDCF1;
+#huzodsscdl .gt_footnotes {
+  color: #FFFFFF;
+  background-color: #2B5597;
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1212,7 +1215,7 @@ Andrea Gomez Vargas
   border-right-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_footnote {
+#huzodsscdl .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1221,7 +1224,7 @@ Andrea Gomez Vargas
   padding-right: 5px;
 }
 
-#mwqzsyaldi .gt_sourcenotes {
+#huzodsscdl .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1235,7 +1238,7 @@ Andrea Gomez Vargas
   border-right-color: #D3D3D3;
 }
 
-#mwqzsyaldi .gt_sourcenote {
+#huzodsscdl .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1243,72 +1246,72 @@ Andrea Gomez Vargas
   padding-right: 5px;
 }
 
-#mwqzsyaldi .gt_left {
+#huzodsscdl .gt_left {
   text-align: left;
 }
 
-#mwqzsyaldi .gt_center {
+#huzodsscdl .gt_center {
   text-align: center;
 }
 
-#mwqzsyaldi .gt_right {
+#huzodsscdl .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mwqzsyaldi .gt_font_normal {
+#huzodsscdl .gt_font_normal {
   font-weight: normal;
 }
 
-#mwqzsyaldi .gt_font_bold {
+#huzodsscdl .gt_font_bold {
   font-weight: bold;
 }
 
-#mwqzsyaldi .gt_font_italic {
+#huzodsscdl .gt_font_italic {
   font-style: italic;
 }
 
-#mwqzsyaldi .gt_super {
+#huzodsscdl .gt_super {
   font-size: 65%;
 }
 
-#mwqzsyaldi .gt_footnote_marks {
+#huzodsscdl .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mwqzsyaldi .gt_asterisk {
+#huzodsscdl .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mwqzsyaldi .gt_indent_1 {
+#huzodsscdl .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mwqzsyaldi .gt_indent_2 {
+#huzodsscdl .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mwqzsyaldi .gt_indent_3 {
+#huzodsscdl .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mwqzsyaldi .gt_indent_4 {
+#huzodsscdl .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mwqzsyaldi .gt_indent_5 {
+#huzodsscdl .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mwqzsyaldi .katex-display {
+#huzodsscdl .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mwqzsyaldi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#huzodsscdl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1475,7 +1478,7 @@ Andrea Gomez Vargas
 <section id="resultado-de-trabajo" class="slide level2">
 <h2>Resultado de trabajo</h2>
 
-<img data-src="images/procesandor2.png" style="width:80.0%" class="r-stretch"></section></section>
+<img data-src="images/procesandor2.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section></section>
 <section id="preguntas" class="title-slide slide level1 center">
 <h1>Preguntas</h1>
 

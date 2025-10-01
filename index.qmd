@@ -28,7 +28,7 @@ from: markdown+emoji
 > “El censo de población es la operación que consiste en recopilar, elaborar, evaluar, analizar y difundir, de manera simultánea, datos demográficos, económicos y sociales de todas las personas de un país o de una parte bien delimitada de un país, en un momento determinado.”[^1] 
 
 
-[^1]: Principios y recomendaciones para los censos de población y habitación
+[^1]: [Principios y recomendaciones para los censos de población y habitación - ONU](https://unstats.un.org/unsd/publication/seriesm/seriesm_67rev2s.pdf)
 
 
 ## Características esenciales que debe cumplir un censo:
@@ -44,9 +44,9 @@ from: markdown+emoji
 
 ## Los censos de población del INDEC
 
-> [censo.gob.ar](https://censo.gob.ar/index.php/historia/)
+> Toda la data de los censos en Argentina está en [censo.gob.ar](https://censo.gob.ar/index.php/historia/)
 
-![](images/censos.png){width="80%"}
+![](images/censos.png){width="80%" fig-align="center"}
 
 
 ## `Importancia de los datos censales`
@@ -79,7 +79,7 @@ from: markdown+emoji
 
 ## Proceso de trabajo en ciencia de datos con `R`
 
-  ![](images/procesor.png){width=80%}
+  ![](images/procesor.png){width=80% fig-align="center"}
 
 ## **`ARcenso`** {.smaller}
 
@@ -88,7 +88,7 @@ Es una iniciativa ciudadana que nació de nuestra experiencia profesional con da
 
 
 
-![](images/SVG Brandpack/icon_lettering_black.svg){width="30%"}
+![](images/SVG Brandpack/icon_lettering_black.svg){width="25%" fig-align="center"} 
 
 
 ## ¿Cuál es la `propuesta`?
@@ -263,7 +263,7 @@ knitr::include_url("https://soyandrea.github.io/arcenso/",height = 600)
 
 ## Manos al código
 
-<br>
+> [Carpeta para descargar scripts de trabajo](https://drive.google.com/drive/folders/1IgGfcNBAMZzf2p83MxH9YJtzyocBx0Pe?usp=sharing)
 
 ![](https://i.pinimg.com/originals/9f/ff/73/9fff730a3d58f7973f6e2891ee468a2d.gif)
 
@@ -299,7 +299,6 @@ install.packages("gt")
 > esto realizo cada vez que use R 
 
 <br>
-<br>
 
 ```{r}
 #| eval: true
@@ -333,7 +332,7 @@ str(estructura_pba_1970)
 ```
 
 
-## Elijo la tabla a trabajar como DataFrame
+## Paso lista de datos a DataFrame
 
 ```{r}
 estructura_pba_1970 <- estructura_pba_1970[[1]]
@@ -421,10 +420,11 @@ tabla_pba <- tabla1 %>%
     tab_options(
      heading.align = "left",
      heading.background.color = "#2B5597",
-     footnotes.background.color = "#cedcf1",
+     footnotes.background.color = "#2B5597",
      column_labels.font.weight = "bold"
   ) %>% 
   tab_source_note('Fuente: INDEC, Censo Nacional de Población, Familias y Viviendas 1970.') 
+  
 
 ```
 
@@ -438,7 +438,7 @@ tabla_pba
 
 ## Resultado de trabajo
 
-![](images/procesandor2.png){width=80%}
+![](images/procesandor2.png){width=80% fig-align="center"}
 
 # Preguntas
 
